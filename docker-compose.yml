@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: cuhawk-api
+    image: cuhawk-mean-api
+    build:
+      context: ./apps/api
+      target: final
+      dockerfile: ../../api.Dockerfile
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+  client:
+    container_name: cuhawk-client
+    image: cuhawk-mean-client
+    build:
+      context: ./apps/client
+      target: final
+      dockerfile: ../../client.Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      api:
+          condition: service_started

@@ -1,0 +1,68 @@
+<section class="container vh-100">
+  <div class="d-flex">
+    <h1>Chat Room</h1>
+    <div class="btn-group btn-group-sm ms-5">
+      <button class="btn btn-sm btn-primary" [disabled]="!uuidValid" (click)="copyUUID()">Copy uuid</button>
+      <button class="btn btn-sm btn-primary" [disabled]="!uuidValid" (click)="copyLink()">Copy link</button>
+    </div>
+  </div>
+
+  <p *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ parseMessage(errorMessage) }}
+  </p>
+
+  <div class="alert alert-danger mt-3" *ngIf="routeState?.nickname === undefined">
+    <p>We need to have your nickname, please fill this form</p>
+    <form class="form-group" [formGroup]="this.chatForm" (ngSubmit)="submitNickname()">
+      <label class="form-label" for="nickname">Nickname</label>
+      <div class="input-group">
+        <input class="btn btn-primary"
+               type="submit"
+               [disabled]="!this.chatForm.controls['nickname'].valid"
+               value="Submit my nickname">
+        <input class="form-control"
+               type="text"
+               id="nickname"
+               name="nickname"
+               formControlName="nickname"
+               placeholder="Type your Nickname" />
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="routeState!['nickname'] !== undefined && uuidValid">
+    <section class="my-3">
+      <ul class="list-group" *ngIf="messages">
+        <li class="list-group-item color-{{items?.type}}" *ngFor="let items of messages">
+          <ng-container *ngIf="items.type === 'general' || items.type === 'info' || items.type === 'error'">
+            {{ items.message }}
+          </ng-container>
+          <ng-container *ngIf="items.type === 'message' && items.sender !== this.chatForm.controls['nickname'].value ">
+            <div class="me-auto">
+              <small><span class="author">{{ items.sender | titlecase }}</span> says at {{ items.time | date:'hh:mm:ss' }}</small>
+              <div class="fw-blod">
+                {{ items.message }}
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="items.type === 'message' && items.sender === this.chatForm.controls['nickname'].value">
+              <div class="me-auto d-flex flex-column text-end">
+                <small><span class="author">You</span> say at {{ items.time | date:'hh:mm:ss' }}</small>
+                <div class="content">
+                  {{ items.message }}
+                </div>
+              </div>
+          </ng-container>
+        </li>
+      </ul>
+    </section>
+
+    <form class="form-group" [formGroup]="this.chatForm" (ngSubmit)="submitMessage()">
+      <div class="input-group">
+          <input type="submit" class="btn btn-sm btn-primary" value="Send">
+          <input type="text" class="form-control" formControlName="message" >
+      </div>
+    </form>
+  </div>
+
+</section>

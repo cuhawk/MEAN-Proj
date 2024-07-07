@@ -1,0 +1,33 @@
+<div class="container">
+  <section class="row vh-100 d-flex align-items-center">
+
+    <div class="col-12 col-md-6">
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+        <form class="card py-3 px-4" [formGroup]="createForm" (ngSubmit)="createChat()">
+          <div class="form-group">
+            <label class="form-label" for="nickname">Nickname</label>
+            <input type="text" formControlName="nickname" class="form-control" id="nickname" placeholder="Your nickname" />
+          </div>
+
+          <input type="submit" class="btn btn-primary mt-2" [disabled]="!this.createForm.touched && !this.createForm.valid" />
+        </form>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="py-3">
+          <h1>Modality</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at velit vel risus ullamcorper porta a pulvinar massa. Quisque laoreet elementum leo. In a vehicula elit. Donec tincidunt, libero in mattis congue, enim ipsum porta libero, vel pulvinar sem nibh in sapien. Nunc nisl arcu, volutpat vel justo id, hendrerit malesuada risus. Donec ut sem quam. Phasellus commodo egestas neque, at ultrices velit lobortis id. Vestibulum sit amet mattis metus, sed aliquam dui. Vestibulum cursus risus eget dui mollis condimentum. Curabitur scelerisque lorem neque, ut vestibulum dui finibus id. Morbi est urna, fringilla sit amet euismod vitae, ultricies et tortor. Aliquam vestibulum posuere risus.
+          </p>
+          <p>
+            Fusce tincidunt hendrerit feugiat. Donec molestie ornare arcu, et elementum mi. Phasellus quis sagittis neque. Integer in dapibus nunc. Aliquam in nulla sodales, fermentum urna eu, placerat est. Sed et tellus elementum, feugiat eros at, faucibus ligula. Vivamus eleifend tempus auctor. Donec ut ante enim. Aliquam ut nibh sapien. Etiam velit sem, ullamcorper ut ullamcorper vitae, maximus ut arcu. Pellentesque sit amet purus nisl.
+          </p>
+          <p>
+            Aliquam aliquet, purus vel ullamcorper congue, lacus nibh congue nibh, ut lacinia urna sem id sem. Proin vestibulum a nulla vitae molestie. In hac habitasse platea dictumst. Sed aliquet molestie ligula. Pellentesque interdum leo quis augue dictum, eu aliquet nulla elementum. Suspendisse a mauris sit amet augue ultrices fermentum sit amet a mi. Nunc tortor leo, sagittis nec venenatis non, commodo sed tortor. Integer consectetur iaculis magna, eu blandit tellus luctus eget. Vivamus et nisi non diam pulvinar egestas. Nulla convallis enim et porttitor ullamcorper. Mauris rutrum ornare posuere.
+          </p>
+        </div>
+    </div>
+  </section>
+</div>

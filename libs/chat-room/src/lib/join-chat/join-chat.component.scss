@@ -1,0 +1,33 @@
+.color-general {
+  background-color: #0056FF;
+  color: white;
+}
+
+.color-info {
+  background-color: #0056FF33 !important;
+  // color: white;
+}
+
+.color-message {
+  border-color: #0056FF55;
+  background-color: #0056FF22;
+  & .author {
+    font-weight: 600;
+    color: #0056FFFF;
+  }
+  & .content {
+    font-weight: 300;
+    color: black;
+  }
+}
+
+.color-message:nth-child(2n+1) {
+  border-color: #0056FF55;
+  background-color: #0056FF11;
+}
+
+.color-error {
+  border-color: darkred;
+  background-color: #FF000033;
+  color: white;
+}
